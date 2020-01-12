@@ -1,6 +1,6 @@
 ---
 title: "Lab 1 Homework"
-author: "What is Your Name?"
+author: "Vincent Castillo"
 date: "Winter 2020"
 output:
   html_document:
@@ -51,3 +51,64 @@ e. Build a `total_week` vector to show how much you lost or won on each day over
 f. Should you stick to blackjack or roulette? Write a program that verifies this below.  
 
 ## Push your final code to [GitHub](https://github.com/FRS417-DataScienceBiologists)
+
+1.
+```{r}
++ 5 - 3 * 2  
+  + 8 / 2 ** 2  
+```
+2.
+```{r}
+(5-3)*2
+(8/2)**2
+```
+3.
+```{r}
+pi <- 3.14159265359
+```
+
+4.
+```{r}
+class(pi)
+```
+5.a)
+```{r}
+days <- c( "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")
+```
+
+b)
+```{r}
+sum(blackjack)
+```
+c)
+```{r}
+new_blackjack <- na.omit (blackjack)
+```
+
+```{r}
+sum(new_blackjack)
+```
+d)
+```{r}
+new_roulette <- na.omit (roulette)
+```
+
+```{r}
+sum(new_roulette)
+```
+e)
+```{r}
+total_week <- c(blackjack+roulette)
+```
+
+```{r}
+total_week
+```
+f) Stick to blackjack
+```{r}
+blackjack>roulette
+```
+
+
+
+
