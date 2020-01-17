@@ -12,66 +12,125 @@ output:
     code_folding: show
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+
 ## Question 1
-```{r}
+
+```r
 + 5 - 3 * 2  
+```
+
+```
+## [1] -1
+```
+
+```r
   + 8 / 2 ** 2  
 ```
+
+```
+## [1] 2
+```
 ## Question 2
-```{r}
+
+```r
 (5-3)*2
+```
+
+```
+## [1] 4
+```
+
+```r
 (8/2)**2
 ```
+
+```
+## [1] 16
+```
 ## Question 3
-```{r}
+
+```r
 pi <- 3.14159265359
 ```
 ## Question 4
-```{r}
+
+```r
 class(pi)
+```
+
+```
+## [1] "numeric"
 ```
 ## Question 5
 a)
-```{r}
+
+```r
 days <- c( "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")
 ```
-```{r}
+
+```r
 blackjack<- c(140, -20, 70, -120, 240, NA, NA)
 ```
-```{r}
+
+```r
 roulette<- c(60, 50, 120, -300, 10, NA, NA)
 ```
 b)
-```{r}
+
+```r
 sum(blackjack)
 ```
+
+```
+## [1] NA
+```
 c)
-```{r}
+
+```r
 new_blackjack <- na.omit (blackjack)
 ```
-```{r}
+
+```r
 sum(new_blackjack)
 ```
+
+```
+## [1] 310
+```
 d)
-```{r}
+
+```r
 new_roulette <- na.omit (roulette)
 ```
-```{r}
+
+```r
 sum(new_roulette)
 ```
+
+```
+## [1] -60
+```
 e)
-```{r}
+
+```r
 total_week <- c(blackjack+roulette)
 ```
-```{r}
+
+```r
 total_week
 ```
+
+```
+## [1]  200   30  190 -420  250   NA   NA
+```
 f) Stick to blackjack
-```{r}
+
+```r
 blackjack>roulette
+```
+
+```
+## [1]  TRUE FALSE FALSE  TRUE  TRUE    NA    NA
 ```
 
 
