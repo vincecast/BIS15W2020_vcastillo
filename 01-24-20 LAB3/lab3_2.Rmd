@@ -135,7 +135,7 @@ Note that if we had called our new variable length, R would overwrite the old va
 fish %>% 
   mutate(length_half = length/2) %>% 
   select(fish_id, length, length_half) %>% 
-  arrange(desc(length_half))
+  arrange(length_half)
 ```
 
 
