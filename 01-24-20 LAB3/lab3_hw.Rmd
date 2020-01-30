@@ -4,10 +4,11 @@ author: "Vincent Castillo"
 date: "Winter 2020"
 output:
   html_document:
+    keep_md: TRUE
     theme: darkly
     toc: yes
     toc_float: yes
-    keep.md: TRUE
+    
     code.folding: show
 ---
 
