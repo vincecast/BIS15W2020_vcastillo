@@ -1,0 +1,79 @@
+---
+title: "Lab 1 Homework"
+subtitle: "01/17/20"
+author: "Vincent Castillo"
+date: "Winter 2020"
+output:
+  html_document:
+    keep_md: TRUE
+    theme: darkly
+    toc: yes
+    toc_float: yes
+    code_folding: show
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+## Question 1
+```{r}
++ 5 - 3 * 2  
+  + 8 / 2 ** 2  
+```
+## Question 2
+```{r}
+(5-3)*2
+(8/2)**2
+```
+## Question 3
+```{r}
+pi <- 3.14159265359
+```
+## Question 4
+```{r}
+class(pi)
+```
+## Question 5
+a)
+```{r}
+days <- c( "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")
+```
+```{r}
+blackjack<- c(140, -20, 70, -120, 240, NA, NA)
+```
+```{r}
+roulette<- c(60, 50, 120, -300, 10, NA, NA)
+```
+b)
+```{r}
+sum(blackjack)
+```
+c)
+```{r}
+new_blackjack <- na.omit (blackjack)
+```
+```{r}
+sum(new_blackjack)
+```
+d)
+```{r}
+new_roulette <- na.omit (roulette)
+```
+```{r}
+sum(new_roulette)
+```
+e)
+```{r}
+total_week <- c(blackjack+roulette)
+```
+```{r}
+total_week
+```
+f) Stick to blackjack
+```{r}
+blackjack>roulette
+```
+
+
+
+
