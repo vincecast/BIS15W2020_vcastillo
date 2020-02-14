@@ -124,8 +124,10 @@ amphibio <-
 ## See problems(...) for more details.
 ```
 
-## Questions  
-**1. First, do some exploratory analysis of both data sets. What is the structure, column names, and dimensions?**  
+### Questions  
+
+## 1. First, do some exploratory analysis of both data sets. What is the structure, column names, and dimensions?**  
+
 
 ```r
 str(amniota)
@@ -389,7 +391,8 @@ dim(amphibio)
 ```
 
 
-**2. How many total NAs are in each data set? Do these values make sense? Are NAs represented by any other values?**   
+## 2. How many total NAs are in each data set? Do these values make sense? Are NAs represented by any other values?**   
+
 
 ```r
 amniota %>%
@@ -416,15 +419,16 @@ amphibio %>%
 ```
 
 
-**3. Make any necessary replacements in the data such that all NAs appear as "NA".**   
+## 3. Make any necessary replacements in the data such that all NAs appear as "NA".** 
+
 
 ```r
 amniota2 <- amniota %>%
   na_if("-999")
 ```
 
+## 4. Use the package `naniar` to produce a summary, including percentages, of missing data in each column for both data sets.**  
 
-**4. Use the package `naniar` to produce a summary, including percentages, of missing data in each column for both data sets.**  
 
 ```r
 naniar::miss_var_summary(amniota2)
@@ -468,8 +472,8 @@ naniar::miss_var_summary(amphibio)
 ## # … with 28 more rows
 ```
 
+## 5. For the `amniota` data, calculate the number of NAs in the `egg_mass_g` column sorted by taxonomic class; i.e. how many NAs are present in the `egg_mass_g` column in birds, mammals, and reptiles? Does this results make sense biologically? How do these results affect your interpretation of NAs?**  
 
-**5. For the `amniota` data, calculate the number of NAs in the `egg_mass_g` column sorted by taxonomic class; i.e. how many NAs are present in the `egg_mass_g` column in birds, mammals, and reptiles? Does this results make sense biologically? How do these results affect your interpretation of NAs?**  
 
 ```r
 amniota2 %>%
@@ -487,9 +491,11 @@ amniota2 %>%
 ## 2 Mammalia      4953
 ## 3 Aves          4914
 ```
+
 Reptiles do not lay eggs, so the NAs in reptilia are true NAs, while the NAs for mammalia and aves are missing data.
 
-**6. Which taxonomic classes are represented in the data? Summarize this in a chart then make a barplot that shows the proportion of observations in each taxonomic class.**
+## 6. Which taxonomic classes are represented in the data? Summarize this in a chart then make a barplot that shows the proportion of observations in each taxonomic class.**
+
 
 ```r
 amniota2 %>%
@@ -499,8 +505,8 @@ amniota2 %>%
 
 ![](lab5_hw_files/figure-html/unnamed-chunk-9-1.png)<!-- -->
 
+## 7. Let's explore the taxonomic composition of the data a bit more. How many genera are represented by taxonomic class? Present this as a data table and bar plot.**
 
-**7. Let's explore the taxonomic composition of the data a bit more. How many genera are represented by taxonomic class? Present this as a data table and bar plot.**
 
 ```r
 amniotagenera <- amniota2 %>%
@@ -528,8 +534,8 @@ amniotageneraplot
 
 ![](lab5_hw_files/figure-html/unnamed-chunk-10-1.png)<!-- -->
 
+## 8. Lastly, how many species are represented in each taxonomic class? Present this as a data table and bar plot.**
 
-**8. Lastly, how many species are represented in each taxonomic class? Present this as a data table and bar plot.**
 
 ```r
 amniotaspecies <- amniota2 %>%
@@ -557,8 +563,8 @@ amniotaspeciesplot
 
 ![](lab5_hw_files/figure-html/unnamed-chunk-11-1.png)<!-- -->
 
+## 9. The `amphibio` data includes information on ecology. Each species is classified as fossorial, terrestrial, aquatic, or arboreal. How many species are in each of these categories? Make a bar plot to visualize these results. Which category is most/ least represented in the data?**
 
-**9. The `amphibio` data includes information on ecology. Each species is classified as fossorial, terrestrial, aquatic, or arboreal. How many species are in each of these categories? Make a bar plot to visualize these results. Which category is most/ least represented in the data?**
 
 ```r
 amphibio %>%
@@ -577,8 +583,8 @@ amphibio %>%
 
 ![](lab5_hw_files/figure-html/unnamed-chunk-12-1.png)<!-- -->
 
+## 10. For the amphibio data, we are interested to know if body size is correlated with litter size? Make a plot that shows this relationship. You should notice that there are outliers. Can you think of a way to identify the outliers for both body size and litter size? What happens when you then re-plot the data?**
 
-**10. For the amphibio data, we are interested to know if body size is correlated with litter size? Make a plot that shows this relationship. You should notice that there are outliers. Can you think of a way to identify the outliers for both body size and litter size? What happens when you then re-plot the data?**
 
 ```r
 amphibio %>%
