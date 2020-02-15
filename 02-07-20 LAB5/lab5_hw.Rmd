@@ -93,7 +93,7 @@ amniota2 %>%
   arrange(desc(total_nas))
 ```
 
-Reptiles do not lay eggs, so the NAs in reptilia are true NAs, while the NAs for mammalia and aves are missing data.
+Mammals do not lay eggs, so the NAs in reptilia and aves are missing data.
 
 ## 6. Which taxonomic classes are represented in the data? Summarize this in a chart then make a barplot that shows the proportion of observations in each taxonomic class.**
 
