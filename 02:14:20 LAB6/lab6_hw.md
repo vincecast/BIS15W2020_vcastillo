@@ -34,7 +34,8 @@ library("gapminder")
 ## Questions
 The questions below are open-ended and have many possible solutions. Your approach should, where appropriate, include numerical summaries and visuals. Be creative; assume you are building an analysis that you would ultimately present to an audience of stakeholders. Feel free to try out different `geoms` if they more clearly present your results.  
 
-**1. Use the function(s) of your choice to get an idea of the overall structure of the data frame, including its dimensions, column names, variable classes, etc. As part of this, determine how NAs are treated in the data.**  
+
+## 1. Use the function(s) of your choice to get an idea of the overall structure of the data frame, including its dimensions, column names, variable classes, etc. As part of this, determine how NAs are treated in the data.**  
 
 
 ```r
@@ -74,7 +75,9 @@ summary(gapminder)
 ## 
 ```
 
-**2. Among the interesting variables in gapminder is life expectancy. How has global life expectancy changed between 1952 and 2007?**
+
+## 2. Among the interesting variables in gapminder is life expectancy. How has global life expectancy changed between 1952 and 2007?
+
 
 ```r
 gapminder %>%
@@ -105,7 +108,8 @@ gapminder %>%
 ```
 
 
-**3. How do the distributions of life expectancy compare for the years 1952 and 2007? _Challenge: Can you put both distributions on a single plot?_**
+## 3. How do the distributions of life expectancy compare for the years 1952 and 2007? 
+
 
 ```r
 gapminder %>%
@@ -128,7 +132,7 @@ gapminder %>%
 ![](lab6_hw_files/figure-html/unnamed-chunk-5-2.png)<!-- -->
 
 
-**4. Your answer above doesn't tell the whole story since life expectancy varies by region. Make a summary that shows the min, mean, and max life expectancy by continent for all years represented in the data.**
+## 4. Your answer above doesn't tell the whole story since life expectancy varies by region. Make a summary that shows the min, mean, and max life expectancy by continent for all years represented in the data.
 
 
 ```r
@@ -159,7 +163,9 @@ gapminder %>%
 ##  Max.   :80.72
 ```
 
-**5. How has life expectancy changed between 1952-2007 for each continent? Try using `geom_line()` for this, including all continents on the same  plot.**
+
+## 5. How has life expectancy changed between 1952-2007 for each continent? Try using `geom_line()` for this, including all continents on the same  plot.
+
 
 ```r
 gapminder %>%
@@ -179,7 +185,8 @@ gapminder %>%
 ![](lab6_hw_files/figure-html/unnamed-chunk-7-1.png)<!-- -->
 
 
-**6. We are interested in the relationship between per capita GDP and life expectancy; i.e. does having more money help you live longer?**
+## 6. We are interested in the relationship between per capita GDP and life expectancy; i.e. does having more money help you live longer?
+
 
 ```r
 gapminder %>%
@@ -192,7 +199,8 @@ gapminder %>%
 ![](lab6_hw_files/figure-html/unnamed-chunk-8-1.png)<!-- -->
 
 
-**7. There is extreme disparity in per capita GDP. Rescale the x axis to make this easier to interpret. How would you characterize the relationship?**
+## 7. There is extreme disparity in per capita GDP. Rescale the x axis to make this easier to interpret. How would you characterize the relationship?
+
 
 ```r
 gapminder %>%
@@ -206,7 +214,8 @@ gapminder %>%
 ![](lab6_hw_files/figure-html/unnamed-chunk-9-1.png)<!-- -->
 
 
-**8. Which countries have had the largest population growth since 1952?**
+## 8. Which countries have had the largest population growth since 1952?
+
 
 ```r
 gap_growth <- gapminder %>%
@@ -240,7 +249,8 @@ gap_growth
 ```
 
 
-**9. Use your results from the question above to plot population growth for the top five countries since 1952.**
+## 9. Use your results from the question above to plot population growth for the top five countries since 1952.
+
 
 ```r
 gap_growth %>%
@@ -257,7 +267,8 @@ gap_growth %>%
 ![](lab6_hw_files/figure-html/unnamed-chunk-11-1.png)<!-- -->
 
 
-**10. How does per capita GDP growth compare between these same five countries?**
+## 10. How does per capita GDP growth compare between these same five countries?
+
 
 ```r
 gapminder %>%
@@ -279,7 +290,3 @@ gapminder %>%
 ```
 
 ![](lab6_hw_files/figure-html/unnamed-chunk-12-1.png)<!-- -->
-
-
-## Push your final code to GitHub!
-Please be sure that you check the `keep md` file in the knit preferences. 
