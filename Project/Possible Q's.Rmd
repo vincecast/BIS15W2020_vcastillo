@@ -1,0 +1,197 @@
+---
+title: "Project"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+library(naniar)
+```
+
+```{r}
+srate <- readr::read_csv("master.csv")
+```
+
+```{r}
+sratee <- srate %>%
+  rename(gdpyr = `gdp_for_year ($)`, gdpcap = `gdp_per_capita ($)`, suicper100k = `suicides/100k pop`)
+```
+
+```{r}
+sratee$country <- as.factor(sratee$country)
+sratee$generation <- as.factor(sratee$generation)
+sratee$age <- as.factor(sratee$age)
+str(sratee)
+```
+
+```{r}
+sratee %>%
+  select(country, year, suicper100k) %>%
+  pivot_wider(
+    names_from = country,
+    values_from = suicper100k,
+    values_fn = list(suicper100k = sum))
+```
+```{r}
+socialist <- sratee %>%
+  select(country, year, suicper100k) %>%
+  filter(country == "Finland" | country == "Denmark" | country == "Netherlands" | country == "Canada" | country == "Sweden" | country == "Norway" | country == "Ireland" | country == "New Zealand" | country == "Belgium") %>%
+   pivot_wider(
+    names_from = year, 
+    values_from = suicper100k,
+    values_fn = list(suicper100k = sum)) %>%
+  pivot_longer(
+    `1985`:`2016`,
+    names_to = "year",
+    values_to = "count"
+  )
+```
+
+```{r}
+sratee %>%
+  select(country, year, suicper100k) %>%
+  filter(country == "Finland" | country == "Denmark" | country == "Netherlands" | country == "Canada" | country == "Sweden" | country == "Norway" | country == "Ireland" | country == "New Zealand" | country == "Belgium", year == "2013") %>%
+  pivot_wider(
+    names_from = year,
+    values_from = suicper100k,
+    values_fn = list(suicper100k = sum)) %>%
+  ggplot(aes(x = country, y = `2013`)) +
+  geom_bar(stat = "identity")
+```
+
+```{r}
+sratee %>%
+  select(country, year, suicper100k) %>%
+  filter(country == "Singapore" | country == "Switzerland" | country == "Australia" | country == "Canada" | country == "Ireland" | country == "United Kingdom" | country == "United Arab Emirates" | country == "New Zealand" | country == "Taiwan", year == "2013") %>%
+  pivot_wider(
+    names_from = year,
+    values_from = suicper100k,
+    values_fn = list(suicper100k = sum)) %>%
+  ggplot(aes(x = country, y = `2013`)) +
+  geom_bar(stat = "identity")
+```
+
+```{r}
+sratesex <- sratee %>%
+  select(sex, suicides_no, population) %>%
+  pivot_wider(
+    names_from = sex, 
+    values_from = suicides_no,
+    values_fn = list(suicides_no = sum)) 
+sratesex
+```
+
+```{r}
+sratesex %>%
+  summarise(totsuicmale = sum(male), totsuicf = sum(female))
+```
+
+```{r}
+srateegen <- sratee %>%
+  select(generation, suicides_no)
+```
+
+
+```{r}
+srateegen %>%
+  ggplot(aes(x = generation, y = suicides_no, fill = generation))+
+  geom_bar(stat = "identity")
+```
+1901 to 1927 GI
+1928 to 1945 Silent
+1946 to 1964 Boomers
+1965 to 1980 Gen X
+1981 to 1996 Millenials
+no consensus for beginning 2012 
+
+
+```{r}
+srateeage <- sratee %>%
+  select(suicides_no, age, population)
+```
+
+```{r}
+srateeage %>%
+  ggplot(aes(x= age, y = suicides_no, fill = age))+
+  geom_bar(stat = "identity")
+```
+```{r}
+srateeage %>%
+  ggplot(aes(x = age, y = population, fill = age))+
+  geom_bar(stat = "identity")
+```
+```{r}
+srateeage %>%
+  group_by(age) %>%
+  pivot_wider(
+    names_from = age,
+    values_from = population,
+    values_fn = list(population = sum))
+```
+```{r}
+library(shiny)
+library(shinydashboard)
+```
+
+```{r}
+sratee %>%
+  select(generation, suicides_no, year, age) %>%
+  filter(generation == "Generation Z") %>%
+  arrange(age, year)
+```
+
+
+
+```{r}
+ui <- dashboardPage(
+  dashboardHeader(title = "Suicide-Generation App"),
+  dashboardSidebar(),
+  dashboardBody(
+  selectInput("generation", "Generation", choices = c("G.I. Generation", "Silent", "Boomers", "Generation X", "Millenials", "Generation Z"),
+              selected = "G.I. Generation"),
+  selectInput("year", "Year", choices = c("1985", "1990", "1995", "2000", "2005", "2010", "2016"),
+              selected = "1985"),
+  selectInput("sex", "Sex", choices = c("male", "female")),
+  plotOutput("plot", width = "500px", height = "400px"))
+)
+
+server <- function(input, output, session) { 
+  
+  # the code to make the plot of iris data grouped by species
+  output$plot <- renderPlot({
+    
+    sratee %>%
+      filter(sex == input$sex, year == input$year, generation == input$generation) %>%
+      ggplot(aes(x = age, y = suicides_no))+
+      geom_bar(stat = "identity")
+  })
+  
+  # stop the app when we close it
+  session$onSessionEnded(stopApp)
+
+  }
+
+shinyApp(ui, server)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
