@@ -10,6 +10,10 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r}
 library(tidyverse)
 library(naniar)
+library(shiny)
+library(shinydashboard)
+library(shinythemes)
+library(dashboardthemes)
 ```
 
 ```{r}
@@ -132,10 +136,7 @@ srateeage %>%
     values_from = population,
     values_fn = list(population = sum))
 ```
-```{r}
-library(shiny)
-library(shinydashboard)
-```
+
 
 ```{r}
 sratee %>%
@@ -147,18 +148,29 @@ sratee %>%
 
 
 ```{r}
-ui <- dashboardPage(
+ui <- 
+  dashboardPage(
   dashboardHeader(title = "Suicide-Generation App"),
-  dashboardSidebar(),
+  dashboardSidebar(disable = TRUE),
   dashboardBody(
+  shinyDashboardThemes(
+  theme = "grey_light"),
+  fluidRow(
+  box(title = "Plot Options", background = "maroon", solidHeader = TRUE, width = 2,
   selectInput("generation", "Generation", choices = c("G.I. Generation", "Silent", "Boomers", "Generation X", "Millenials", "Generation Z"),
               selected = "G.I. Generation"),
   selectInput("year", "Year", choices = c("1985", "1990", "1995", "2000", "2005", "2010", "2016"),
               selected = "1985"),
-  selectInput("sex", "Sex", choices = c("male", "female")),
-  plotOutput("plot", width = "500px", height = "400px"))
+  selectInput("sex", "Sex", choices = c("male", "female"))),
+  box(title = "Suicide Generation Plot", background = "maroon", solidHeader = TRUE, width = 8,
+  plotOutput("plot", width = "900px", height = "400px"))),
+  fluidRow(
+  box(title = "Suicide Sex Plot", background = "fuchsia", solidHeader = TRUE, width = 8,
+    plotOutput("plott", width = "900px", height = "400px"
+  )
 )
-
+)
+))
 server <- function(input, output, session) { 
   
   # the code to make the plot of iris data grouped by species
@@ -166,10 +178,15 @@ server <- function(input, output, session) {
     
     sratee %>%
       filter(sex == input$sex, year == input$year, generation == input$generation) %>%
-      ggplot(aes(x = age, y = suicides_no))+
+      ggplot(aes(x = age, y = suicides_no, fill = age))+
       geom_bar(stat = "identity")
   })
+  output$plott <- renderPlot({
   
+    sratee %>%
+      ggplot(aes(x = age, y = suicides_no, fill = age))+
+      geom_bar(stat = "identity")
+  })
   # stop the app when we close it
   session$onSessionEnded(stopApp)
 
