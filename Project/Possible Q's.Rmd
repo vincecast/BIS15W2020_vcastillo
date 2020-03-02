@@ -99,7 +99,7 @@ srateegen <- sratee %>%
   select(generation, suicides_no)
 ```
 
-
+Suicides by generation, is skewed by the number of people within the generations
 ```{r}
 srateegen %>%
   ggplot(aes(x = generation, y = suicides_no, fill = generation))+
@@ -112,17 +112,26 @@ srateegen %>%
 1981 to 1996 Millenials
 no consensus for beginning 2012 
 
+DO POPULATION BY GENERATION
+
+
 
 ```{r}
 srateeage <- sratee %>%
   select(suicides_no, age, population)
 ```
 
+
+Suicides by age group
 ```{r}
 srateeage %>%
   ggplot(aes(x= age, y = suicides_no, fill = age))+
   geom_bar(stat = "identity")
 ```
+
+
+
+Total number of sampled people
 ```{r}
 srateeage %>%
   ggplot(aes(x = age, y = population, fill = age))+
@@ -145,7 +154,7 @@ sratee %>%
   arrange(age, year)
 ```
 
-
+App for showing suicides by generation and suicides by gender
 ```{r}
 ui <- 
   dashboardPage(
@@ -215,13 +224,34 @@ srateeyear <- sratee %>%
 ```
 
 I omitted the year 2016 from the data set for this since it appears it wasn't sampeled throughout the year. It was heavily skewing my data.
-
+Suicides by the year
 ```{r}
 srateeyear %>%
   ggplot(aes(x = year, y = suicides))+
   geom_point()+
   geom_smooth(method = "lm", se = FALSE)
 ```
+
+GDPpercap vs suicide 
+```{r}
+sratee %>%
+  select(gdpcap, suicides_no) %>%
+  group_by(gdpcap) %>%
+  summarise(suicides = sum(suicides_no)) %>%
+  arrange(gdpcap) %>%
+  ggplot(aes(x = gdpcap, y = suicides)) +
+  geom_point()+
+  geom_smooth(method = "lm", se = FALSE)
+```
+
+
+
+
+
+
+
+
+
 
 
 
