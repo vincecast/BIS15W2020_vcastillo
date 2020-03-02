@@ -214,7 +214,7 @@ srateeyear <- sratee %>%
   summarise(suicides = sum(suicides_no)) 
 ```
 
-I omitted the year 2016 from the data set for this since it appears it wasn't sampeled throughout the year.
+I omitted the year 2016 from the data set for this since it appears it wasn't sampeled throughout the year. It was heavily skewing my data.
 
 ```{r}
 srateeyear %>%
