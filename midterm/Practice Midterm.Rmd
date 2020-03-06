@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ## `gapminder`
 For this assignment, we are going to use the dataset [gapminder](https://cran.r-project.org/web/packages/gapminder/index.html). Gapminder includes information about economics, population, and life expectancy from countries all over the world. You will need to install it before use.
 ```{r}
-#install.packages("gapminder")
+install.packages("gapminder")
 ```
 
 ## Load the libraries
@@ -25,9 +25,15 @@ options(scipen=999) #disables scientific notation when printing
 
 ## Data structure
 **1. Use the function(s) of your choice to get an idea of the overall structure of the data frame, including its dimensions, column names, variable classes, etc.**
+```{r}
+glimpse(gapminder)
+```
 
 
 **2. Are there any NA's in the data?**
+```{r}
+anyNA(gapminder)
+```
 
 
 ## Three versions of the `gampminder` data  
@@ -42,44 +48,118 @@ gapminder
 
 ## Long `gapminder`
 **3. Make a new data frame `gapminder_long` that combines the three measured values (lifeExp, pop, gdpPercap) into a single column associated with a country and year.**
-
+```{r}
+gapminder_long <- gapminder %>%
+  select(country, year, lifeExp, pop, gdpPercap) %>%
+  pivot_longer(lifeExp:gdpPercap,
+               names_to = "values",
+               values_to = "data")
+gapminder_long
+```
 
 **4. For practice, use `pivot_wider()` to put the data back into the original `gapminder` format.**
+```{r}
+gapminder_original <- gapminder_long %>%
+  pivot_wider(
+    names_from = values,
+    values_from = data)
+gapminder_original
+```
 
 
 ## Wide `gapminder`
 **5. Make a new data frame `gapminder_wide` that has all observations for each country in a single row. The column names should be named as "observation_year". Arrange them sequentially by year.**
 
+```{r}
+gapminder_wide <- gapminder %>%
+  select(country, year, lifeExp, pop, gdpPercap) %>%
+  pivot_longer(lifeExp:gdpPercap,
+               names_to = "type",
+               values_to = "obs") %>%
+  pivot_wider(
+    names_from = year,
+    values_from = obs)
+gapminder_wide
+```
+
 
 **6. For practice, use `pivot_longer()` to put the data back into the original `gapminder` format. Hint: you can't do this in one step!**
+
+```{r}
+gapminder_wide %>%
+  pivot_longer(`1952`:`2007`,
+               names_to = "year",
+               values_to = "obs") %>%
+  pivot_wider(
+    names_from = type,
+    values_from = obs)
+```
 
 
 ## Data summaries
 **7. How many different continents and countries are represented in the data? Provide the total number and their names.**
 
+```{r}
+
+```
 
 **8. How many countries are represented on each continent?**
 
+```{r}
+
+```
 
 **9. For the years included in the data, what is the mean life expectancy by continent? Arrange the results in descending order.**
 
+```{r}
+
+```
 
 **10. For the years included in the data, how has life expectancy changed in each country between 1952-2007? How does this look in the USA only?**
 
+```{r}
+
+```
 
 **11. In the year 2007, which countries had a life expectancy between 70 and 75 years?**
 
+```{r}
+
+```
 
 **10. In 1997, what are the minimum, maximum, and mean life expectancies of the Americas and Europe?**
 
+```{r}
+
+```
 
 **12. Which countries had the smallest populations in 1952? How about in 2007?**  
 
+```{r}
+
+```
 
 **13. We are interested in the GDP for countries in the Middle East including all years in the data. First, separate all of the countries on the "Asia" continent. How many countries are listed and what are their names?**
 
+```{r}
+
+```
 
 **14. Next, remove all of the countries from this list that are part of the Middle East and put them into a new object `gapminder_middleEast`. Add a new column to the data called "region" and make sure "Middle East" is specified for these countries.**
 
+```{r}
+
+```
 
 **15. Now show the gdpPercap for each country with the years as column names; i.e. one row per country.**
+
+```{r}
+
+```
+
+
+
+
+
+
+
