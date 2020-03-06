@@ -13,7 +13,6 @@ library(naniar)
 library(shiny)
 library(shinydashboard)
 library(shinythemes)
-library(dashboardthemes)
 ```
 
 ```{r}
@@ -161,8 +160,6 @@ ui <-
   dashboardHeader(title = "Suicide-Generation App"),
   dashboardSidebar(disable = TRUE),
   dashboardBody(
-  shinyDashboardThemes(
-  theme = "grey_dark"),
   fluidRow(
   box(title = "Plot Options", background = "maroon", solidHeader = TRUE, width = 2,
   selectInput("generation", "Generation", choices = c("G.I. Generation", "Silent", "Boomers", "Generation X", "Millenials", "Generation Z"),
