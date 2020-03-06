@@ -8,16 +8,16 @@ if (!require("shinydashboard")) install.packages('shinydashboard')
 library("shinydashboard")
 if (!require("shinythemes")) install.packages('shinythemes')
 library("shinythemes")
-if (!require("dashboardthemes")) install.packages('dashboardthemes')
-library("dashboard")
+
+srate <- readr::read_csv("master.csv")
+sratee <- srate %>%
+  rename(gdpyr = `gdp_for_year ($)`, gdpcap = `gdp_per_capita ($)`, suicper100k = `suicides/100k pop`)
 
 ui <- 
   dashboardPage(
     dashboardHeader(title = "Suicide-Generation App"),
     dashboardSidebar(disable = TRUE),
     dashboardBody(
-      shinyDashboardThemes(
-        theme = "grey_dark"),
       fluidRow(
         box(title = "Plot Options", background = "maroon", solidHeader = TRUE, width = 2,
             selectInput("generation", "Generation", choices = c("G.I. Generation", "Silent", "Boomers", "Generation X", "Millenials", "Generation Z"),
