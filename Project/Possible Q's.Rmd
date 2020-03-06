@@ -1,6 +1,6 @@
 ---
 title: "Project"
-output: html_document
+output: ioslides_presentation
 ---
 
 ```{r setup, include=FALSE}
@@ -121,8 +121,7 @@ srateeage <- sratee %>%
 ```
 
 
-Suicides by age group
-```{r}
+```{r warning=FALSE}
 srateeage %>%
   ggplot(aes(x= age, y = suicides_no, fill = age))+
   geom_bar(stat = "identity")
