@@ -199,8 +199,9 @@ gapminder %>%
 
 gapminderasia <- gapminder %>%
   select(gdpPercap, country, continent, year) %>%
-  group_by(continent) %>%
-  filter(continent == "Asia")
+  group_by(country) %>%
+  filter(continent == "Asia") %>%
+  summarise(meangdp = mean(gdpPercap))
 gapminderasia
 ```
 
@@ -210,6 +211,8 @@ gapminderasia
 gapminder_middleEast <- gapminderasia %>%
   filter(country == "Bahrain" | country == "Egypt" | country == "Iran" | country == "Iraq" | country == "Israel" | country == "Jordan" | country == "Kuwait" | country == "Lebanon" | country == "Oman" | country == "Saudi Arabia" | country == "Syria" | country == "Turkey" | country == "Yemen, Rep.")
 
+gapminder_middleEast$region <- c("Middle East")
+gapminder_middleEast
 ```
 
 **15. Now show the gdpPercap for each country with the years as column names; i.e. one row per country.**
